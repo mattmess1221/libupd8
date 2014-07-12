@@ -101,7 +101,11 @@ public class LibraryUpdate {
 	private JsonElement getRemoteJson(String version) throws IOException {
 		URL url = new URL(String.format(VERSION_URL, version, version));
 		InputStream is = url.openStream();
-		return gson.fromJson(new InputStreamReader(is), JsonElement.class);
+		try{
+			return gson.fromJson(new InputStreamReader(is), JsonElement.class);
+		}finally{
+			is.close();
+		}
 	}
 	
 	private JsonElement getLocalJson(String version) throws IOException {
