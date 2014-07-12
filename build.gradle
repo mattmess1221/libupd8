@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+repositories{
+    mavenCentral()
+    maven{
+        name = "minecraft"
+        url = "https://libraries.minecraft.net/"
+    }
+    maven{
+        name = "forge"
+        url = "http://files.minecraftforge.net/maven/"
+    }
+}
+
+version = "1.0"
+group = "mnm.mods"
+archivesBaseName = "libupd8"
+
+dependencies{
+    compile "net.minecraft:launchwrapper:1.9"
+    compile "com.google.guava:guava:15.0"
+    compile "com.google.code.gson:gson:2.2.4"
+    compile "commons-io:commons-io:2.4"
+    compile "cpw.mods:fml:1.7.10-7.10.19.953:universal"
+}
