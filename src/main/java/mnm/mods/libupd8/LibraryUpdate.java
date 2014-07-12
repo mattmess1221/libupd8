@@ -7,13 +7,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 
 import net.minecraft.launchwrapper.Launch;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -100,11 +99,17 @@ public class LibraryUpdate {
 
 	private JsonElement getRemoteJson(String version) throws IOException {
 		URL url = new URL(String.format(VERSION_URL, version, version));
-		InputStream is = url.openStream();
+		InputStream is = null;
 		try{
-			return gson.fromJson(new InputStreamReader(is), JsonElement.class);
-		}finally{
+			is = url.openStream();
+			JsonElement element = gson.fromJson(new InputStreamReader(is), JsonElement.class);
 			is.close();
+			return element;
+		}catch(IOException e){
+			throw e;
+		}finally{
+			if(is != null)
+				IOUtils.closeQuietly(is);
 		}
 	}
 	
