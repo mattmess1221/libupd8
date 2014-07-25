@@ -3,6 +3,10 @@ LibUpd8
 
 A small *mod* to update Mojang libraries.
 
+**This is no longer relevant as of Minecraft Launcher 1.4.6.
+It added version inheritance so it is no longer necessary to
+keep up with all the changes Mojang does to their json.**
+
 In a Minecraft modded environment, the libraries are not updated
 like they do in a vanilla version. This has become an issue recently
 as Mojang has been pushing frequent updates to Realms, causing Realms
